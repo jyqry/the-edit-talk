@@ -46,7 +46,7 @@ export default {
         var reader = new FileReader()
         this.profileIndex = index
         reader.onload = (e) => {
-          this.updateProfilePicture(e.target.result)
+          this.updateProfilePicture(this.dataURItoBlob(e.target.result))
         }
         reader.readAsDataURL(input.files[0])
       }
@@ -57,6 +57,18 @@ export default {
         pic: data
       }
       this.$store.dispatch('updateProfilePicture', temp)
+    },
+    dataURItoBlob: function (dataURI) {
+      var byteString = atob(dataURI.split(',')[1])
+      // var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+      var ab = new ArrayBuffer(byteString.length)
+      var ia = new Uint8Array(ab)
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i)
+      }
+
+      var bb = new Blob([ab])
+      return window.URL.createObjectURL(bb)
     },
     updateProfileDirection: function (index, data) {
       var temp = {

@@ -20,14 +20,17 @@
           <input type="checkbox" @change="updatePageFontWeight" id="font-weight-bold"><label for="font-weight-bold">굵은 텍스트</label>
         </div>
         <div>
-          <label><input type="checkbox" @change="updatePageNameShow">이름 항상 표시</label>
+          <label><input type="checkbox" v-model="nameShow" @change="updatePageNameShow">이름 항상 표시</label>
         </div>
       </div>
-      <h2>채팅방 테마</h2>
-      <div class="themes">
-        <div class="theme imessage"
-        :class="{ active: getCurrentPage.theme === 'imessage'}"
-        @click="pageThemeChange('imessage')"></div>
+      <h2>인터페이스 표시</h2>
+      <div class="interfaces">
+        <div>
+          <label><input type="checkbox" @change="toggleInterfaceTop">상단 인터페이스 표시</label>
+        </div>
+        <div>
+          <label><input type="checkbox" @change="toggleInterfaceBottom">하단 인터페이스 표시</label>
+        </div>
       </div>
     </div>
   </div>
@@ -39,7 +42,7 @@ export default {
   data () {
     return {
       fontWeight: false,
-      nameShow: false
+      nameShow: true
     }
   },
   methods: {
@@ -59,6 +62,12 @@ export default {
     },
     pageThemeChange: function (data) {
       this.$store.dispatch('pageThemeChange', data)
+    },
+    toggleInterfaceTop: function () {
+      this.$store.dispatch('toggleInterfaceTop')
+    },
+    toggleInterfaceBottom: function () {
+      this.$store.dispatch('toggleInterfaceBottom')
     }
   },
   computed: {

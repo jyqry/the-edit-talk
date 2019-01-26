@@ -5,7 +5,11 @@ const state = {
     title: '',
     theme: 'imessage',
     font: 'font-default',
-    chats: []
+    fontWeight: false,
+    nameShow: true,
+    chats: [],
+    showInterfaceTop: false,
+    showInterfaceBottom: false
   }],
   profiles: [{
     name: '홍길동',
@@ -19,8 +23,10 @@ const state = {
     theme: 'imessage',
     font: 'font-default',
     fontWeight: false,
-    nameShow: false,
-    chats: []
+    nameShow: true,
+    chats: [],
+    showInterfaceTop: false,
+    showInterfaceBottom: false
   },
   profile: {
     name: '홍길동',
@@ -50,6 +56,11 @@ const mutations = {
   [types.INSERT_CHAT_LINE] (state, data) {
     state.pages[state.currentPage].chats.push(data)
   },
+  [types.SET_CURRENT_CHAT] (state, data) {
+    const newData = JSON.parse(JSON.stringify(state.pages[state.currentPage]))
+    newData.chats = data
+    state.pages.splice(state.currentPage, 1, newData)
+  },
   [types.PAGE_CHANGE] (state, data) {
     state.currentPage = data
   },
@@ -70,6 +81,16 @@ const mutations = {
   [types.PAGE_THEME_CHANGE] (state, data) {
     var newData = JSON.parse(JSON.stringify(state.pages[state.currentPage]))
     newData.theme = data
+    state.pages.splice(state.currentPage, 1, newData)
+  },
+  [types.TOGGLE_INTERFACE_TOP] (state) {
+    var newData = JSON.parse(JSON.stringify(state.pages[state.currentPage]))
+    newData.showInterfaceTop = !newData.showInterfaceTop
+    state.pages.splice(state.currentPage, 1, newData)
+  },
+  [types.TOGGLE_INTERFACE_BOTTOM] (state) {
+    var newData = JSON.parse(JSON.stringify(state.pages[state.currentPage]))
+    newData.showInterfaceBottom = !newData.showInterfaceBottom
     state.pages.splice(state.currentPage, 1, newData)
   },
   [types.UPDATE_PAGE_TITLE] (state, data) {

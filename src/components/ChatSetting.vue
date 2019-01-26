@@ -1,6 +1,7 @@
 <template>
   <div id="chat-setting">
     <div class="chat-preview">
+      <draggable v-model="getCurrentPage.chats">
         <div class="line" v-for="(chat, index) in getCurrentPage.chats">
           <div class="name">
             #{{chat.profile}} {{ getProfiles[chat.profile].name }}
@@ -12,6 +13,7 @@
             <textarea :value="chat.text" @change="updateChatLine(index, $event)"></textarea>
           </div>
         </div>
+      </draggable>
     </div>
     <div class="input-form">
       <div class="profile-selector">
@@ -19,19 +21,24 @@
           <option v-for="(profile, index) in getProfiles" :value="index">#{{index}} {{ profile.name }}</option>
         </select>
         <div class="text">
-          <textarea :value="currentChat" @change="currentChatUpdate"></textarea>
+          <textarea v-model="currentChat" ref="chatTextarea" @keypress.shift.enter="insertChatLineByShortCut"></textarea>
         </div>
-        <div class="submit" @click="insertChatLine">
-          입력
-        </div>
+        <button class="submit" @click="insertChatLine">
+          입력 (shift+enter)
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
   name: 'chat-setting',
+  components: {
+    draggable
+  },
   data () {
     return {
       profileIndex: 0,
@@ -65,11 +72,17 @@ export default {
       }
       this.$store.dispatch('updateChatLine', data)
     },
+    insertChatLineByShortCut: function () {
+      this.insertChatLine()
+      this.currentChat = ''
+      this.$refs.chatTextarea.value = null
+    },
     deleteChatLine: function (index) {
       this.$store.dispatch('deleteChatLine', index)
     },
     currentChatUpdate: function (e) {
       this.currentChat = e.target.value
+      console.log(e.target.value)
     }
   },
   computed: {
@@ -78,6 +91,14 @@ export default {
     },
     getCurrentPage: function () {
       return this.$store.getters.currentPage
+    },
+    chats: {
+      get () {
+        return this.$store.getters.currentPage.chats
+      },
+      set (value) {
+        this.$store.commit('SET_CURRENT_CHAT', value)
+      }
     }
   }
 }
@@ -131,9 +152,11 @@ export default {
       width: 100%
       height: 40px
       line-height: 40px
+      border: 0
       border-top: 1px solid #e6e6e6
       text-align: center
       box-sizing: border-box
       color: #009EE7
       cursor: pointer
+      outline: none
 </style>

@@ -9,6 +9,13 @@
       <chat-setting></chat-setting>
     </div>
     <div class="albums">
+      <div class="how-to-use-album">
+        <span class="code">img:숫자</span>를 쓰면 채팅창에 사진이 들어갑니다.
+      </div>
+      <div class="drop-here" v-if="album.length === 0">
+        이미지 파일을 이곳에<br>
+        드래그 앤 드롭 하세요.
+      </div>
       <div class="pic" v-for="(pic, index) in album">
         <div>
           <img :src="pic">
@@ -124,6 +131,25 @@ export default {
   border-right: 1px solid #e6e6e6
   z-index: 10
   overflow: auto
+  .how-to-use-album
+    width: 100%
+    padding: 10px
+    background-color: #009EE7
+    color: #ffffff
+    box-sizing: border-box
+    font-size: 12px
+    word-break: keep-all
+    text-align: center
+    line-height: 1.6
+    .code
+      background-color: #ffffff
+      color: #000000
+      border-radius: 99px
+      padding: 0 5px
+  .drop-here
+    padding: 100px 10px
+    box-sizing: border-box
+    text-align: center
   .pic
     padding: 10px
     text-align: center

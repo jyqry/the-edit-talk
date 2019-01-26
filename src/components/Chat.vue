@@ -7,7 +7,7 @@
       <div v-if="getCurrentPage.title" class="page-title">
         {{ getCurrentPage.title }}
       </div>
-      <div v-if="getCurrentPage.theme === 'imessage'" class="imessage-header">
+      <div v-show="getCurrentPage.showInterfaceTop" class="imessage-header">
         <div class="top-right"></div>
         <div class="profile">
           <div class="thumb" v-bind:style="{ backgroundImage: `url('${getProfiles[0].pic}')`}"></div>
@@ -36,9 +36,7 @@
 
         </div>
       </div>
-      <div class="bottom-bar">
-
-      </div>
+      <div class="bottom-bar" v-show="getCurrentPage.showInterfaceBottom"></div>
     </div>
   </div>
 </template>

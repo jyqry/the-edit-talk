@@ -49,3 +49,9 @@ export const setPage = ({ commit }, data) => {
 export const addAlbum = ({ commit }, data) => {
   commit(types.ADD_ALBUM, data)
 }
+export const toggleInterfaceTop = ({ commit }) => {
+  commit(types.TOGGLE_INTERFACE_TOP)
+}
+export const toggleInterfaceBottom = ({ commit }) => {
+  commit(types.TOGGLE_INTERFACE_BOTTOM)
+}
