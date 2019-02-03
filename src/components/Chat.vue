@@ -62,13 +62,13 @@ export default {
       image.crossOrigin = 'Anonymous'
       var origin = document.getElementById('chat-preview')
       var temp = origin.cloneNode(true)
-      var filename = 'chat-' + this.getChat.currentPage + '-' + Date.now() + '.png'
+      var filename = 'chat-' + this.getChat.currentPage + '-' + Date.now() + '.jpg'
       document.getElementById('chat-render').innerHTML = ''
       document.getElementById('chat-render').appendChild(temp)
       html2canvas(document.getElementById('chat-render').lastChild, { allowTaint: true }).then(function (canvas) {
         document.getElementById('chat-render').innerHTML = ''
-        var data = canvas.toDataURL()
-        window.download(data, filename, 'image/png')
+        var data = canvas.toDataURL('image/jpeg', 0.9)
+        window.download(data, filename, 'image/jpeg')
       })
     },
     isDuplicateProfile: function (before, after) {
