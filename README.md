@@ -19,3 +19,4 @@ iMessage스타일의 채팅 스크린샷을 만드는 도구입니다.
 
 # See Also
 * [https://chichi.space/post/너의-채팅방](https://chichi.space/post/너의-채팅방)
+* [https://github.com/jyqry/vue-fake-chat](https://github.com/jyqry/vue-fake-chat)
