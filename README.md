@@ -1,34 +1,21 @@
-# fake-chat-maker
+# 디에디톡
+iMessage스타일의 채팅 스크린샷을 만드는 도구입니다.
 
-> 가상 채팅을 만듭니다.
-> vue.js, vuex, sass 연습용으로 만든 프로젝트
+## 디에디트
+웹진 [디에디트](http://the-edit.co.kr)를 위해 만든 도구입니다. (사랑해요 디에디트)
 
+# Live Demo
+[http://chat.chichi.space/](http://chat.chichi.space/) 에서 실제 동작하는 앱을 확인할 수 있습니다.
 
-# 사용한 것
-* vue.js
-* vuex
-* node-sass / sass-loader
-* html2canvas
-* download.js
+# 이런걸 만들 수 있어요
+![](https://chichi.space/img/15306239134.png)
 
-vue-cli의 webpack 템플릿 기반으로 만들었습니다.
+## 이 도구를 활용한 디에디트 기사를 만나보세요
+* [[디에디톡] 개그매거진을 만드는 여자](http://the-edit.co.kr/18247)
+* [[디에디톡] 보트 위에서 사진찍는 여자](http://the-edit.co.kr/19061)
+* [[디에디톡] 이름이 김리뷰인 남자](http://the-edit.co.kr/15155)
+* [[디에디톡] 다이슨을 만드는 남자](http://the-edit.co.kr/16048)
+* [[디에디톡] 월드 투어 중인 남자](http://the-edit.co.kr/16838)
 
-vuex 템플릿은 [박창주](https://github.com/ChangJoo-Park)님의 [webpack template](https://github.com/ChangJoo-Park/webpack)에서 가져왔습니다.
-
-
-# 데모
-
-![](https://i.imgur.com/Hga9Rol.gif)
-
-# 설치 및 빌드
-
-```
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
+# See Also
+* [https://chichi.space/post/너의-채팅방](https://chichi.space/post/너의-채팅방)
