@@ -24,13 +24,14 @@
             v-bind:style="{ 'background-image': 'url(' + getProfiles[chat.profile].pic + ')' }">
           </div>
 
-          <div class="text-wrap">
+          <div v-bind:class="{'text-wrap': !hasEmoji(chat.text) && Array.from(chat.text).length !== 1}">
             <div class="name" v-if="isDuplicateProfile(index, chat.profile) && getCurrentPage.nameShow">
               {{ getProfiles[chat.profile].name }}
             </div>
             <div v-if="chat.text.startsWith('img:')" class="img">
               <img :src="getPhoto(chat.text.replace('img:', ''))" crossorigin="Anonymous">
             </div>
+            <div v-else-if="hasEmoji(chat.text) && Array.from(chat.text).length === 1" class="emoji" v-html="chat.text.replace(/\n/g, '<br>')"></div>
             <div v-else class="text" v-bind:class="{ bold : getCurrentPage.fontWeight, first: isDuplicateProfile(index, chat.profile), last: isLastProfile(index) }" v-html="chat.text.replace(/\n/g, '<br>')"></div>
           </div>
 
@@ -89,6 +90,11 @@ export default {
     },
     getPhoto: function (index) {
       return this.album[index]
+    },
+    hasEmoji: function (str) {
+      // const unifiedEmojiRanges = ['\ud83c[\udf00-\udfff]', '\ud83d[\udc00-\ude4f]', '\ud83d[\ude80-\udeff]']
+      const reg = /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g
+      return reg.test(str)
     }
   },
   computed: {
@@ -205,6 +211,11 @@ export default {
         .pic
           left: 35px
           bottom: -3px
+        .emoji
+          margin-left: 96px
+          font-size: 100px
+          height: 120px
+          line-height: 1em
         .text-wrap
           margin-left: 109px
           .name
@@ -227,6 +238,10 @@ export default {
         float: right
         .pic
           display: none
+        .emoji
+          font-size: 100px
+          height: 120px
+          line-height: 1em
         .text-wrap
           margin-right: 20px
           .name
@@ -287,6 +302,7 @@ export default {
             max-width: 100%
             border-radius: 50px
             vertical-align: top
+        
   .bottom-bar
     width: 100%
     height: 127px

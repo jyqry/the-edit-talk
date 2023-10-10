@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "html2canvas": "^1.0.0-alpha.12",
-    "node-sass": "^4.7.2",
+    "node-sass": "^8.0.0",
     "sass-loader": "^6.0.3",
     "vue": "^2.2.2",
     "vue-picture-input": "^1.10.0",
