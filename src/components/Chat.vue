@@ -24,14 +24,14 @@
             v-bind:style="{ 'background-image': 'url(' + getProfiles[chat.profile].pic + ')' }">
           </div>
 
-          <div v-bind:class="{'text-wrap': !hasEmoji(chat.text) && Array.from(chat.text).length !== 1}">
+          <div v-bind:class="{'text-wrap': Array.from(chat.text).length !== 1 || !hasEmoji(chat.text)}">
             <div class="name" v-if="isDuplicateProfile(index, chat.profile) && getCurrentPage.nameShow">
               {{ getProfiles[chat.profile].name }}
             </div>
             <div v-if="chat.text.startsWith('img:')" class="img">
               <img :src="getPhoto(chat.text.replace('img:', ''))" crossorigin="Anonymous">
             </div>
-            <div v-else-if="hasEmoji(chat.text) && Array.from(chat.text).length === 1" class="emoji" v-html="chat.text.replace(/\n/g, '<br>')"></div>
+            <div v-else-if="!(Array.from(chat.text).length !== 1 || !hasEmoji(chat.text))" class="emoji" v-html="chat.text.replace(/\n/g, '<br>')"></div>
             <div v-else class="text" v-bind:class="{ bold : getCurrentPage.fontWeight, first: isDuplicateProfile(index, chat.profile), last: isLastProfile(index) }" v-html="chat.text.replace(/\n/g, '<br>')"></div>
           </div>
 
