@@ -58,12 +58,25 @@ export default {
     insertChatLine: function () {
       var data = {
         profile: this.profileIndex,
-        text: this.currentChat
+        text: this.currentChat.trim()
       }
       if (this.currentChat !== '') {
         this.$store.dispatch('insertChatLine', data)
       }
       this.currentChat = ''
+      console.log(this.getCurrentPage.chats.length)
+      if (this.getCurrentPage.chats.length > 19) {
+        console.log('?')
+        this.newPage()
+        alert('채팅이 20줄을 넘었습니다. 새 페이지를 생성합니다.')
+      }
+    },
+    newPage: function () {
+      this.$store.dispatch('newPage')
+      this.pageChange(this.getPages.length - 1)
+    },
+    pageChange: function (index) {
+      this.$store.dispatch('pageChange', index)
     },
     updateChatLine: function (index, e) {
       var data = {
@@ -91,6 +104,9 @@ export default {
     },
     getCurrentPage: function () {
       return this.$store.getters.currentPage
+    },
+    getPages: function () {
+      return this.$store.getters.pages
     },
     chats: {
       get () {
