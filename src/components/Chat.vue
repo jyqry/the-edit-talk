@@ -165,7 +165,7 @@ export default {
       right: 0
       width: 1125px
       height: 300px
-      background-image: url('/static/png/imessage-header-top-right.png')
+      background-image: url('/the-edit-talk/static/png/imessage-header-top-right.png')
       background-repeat: no-repeat
       background-size: 1125px 300px
       background-position: center
@@ -230,7 +230,7 @@ export default {
               content: ''
               width: 40px
               height: 36px
-              background-image: url('/static/png/imessage-arrow-left.png')
+              background-image: url('/the-edit-talk/static/png/imessage-arrow-left.png')
               background-repeat: no-repeat
               background-size: cover
               background-position: center
@@ -258,7 +258,7 @@ export default {
               content: ''
               width: 40px
               height: 40px
-              background-image: url('/static/png/imessage-arrow-right.png')
+              background-image: url('/the-edit-talk/static/png/imessage-arrow-right.png')
               background-repeat: no-repeat
               background-size: cover
               background-position: center
@@ -306,7 +306,7 @@ export default {
   .bottom-bar
     width: 100%
     height: 127px
-    background-image: url('/static/png/bottom-bar.png')
+    background-image: url('/the-edit-talk/static/png/bottom-bar.png')
     background-repeat: no-repeat
     background-size: 100%
     background-position: center
